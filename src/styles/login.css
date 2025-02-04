@@ -1,0 +1,57 @@
+/*some of the styles are same as the styles of register.css  */
+
+.login-wrapper{
+    position: relative;
+    /* border: 2px solid black; */
+    width: 580px;;
+    height: 430px !important;
+   background: transparent;
+   backdrop-filter: blur(30px);
+   box-shadow: 0 0 10px rgba(0,0,0,1);
+  border-radius: 10px;
+  color: white;
+}
+.login-wrapper .login-form-box{
+    width: 100%; 
+    padding: 30px;
+
+}
+form .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+    }
+    .input-box input{
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255,.1);
+        border-radius: 50px;
+        font-size: 1rem;
+        color: white;
+        padding: 20px 65px 20px 30px;
+    }
+
+    .input-box input::placeholder{
+        color: white;
+    }
+    .input-box .icon{
+        position: absolute;
+        right: 20px;
+        top: 30%;
+    font-size: 1.2rem;
+    }
+form .forget{
+    display: flex ;
+    justify-content: end;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+}
+.forget:hover{
+    text-decoration: underline;
+}
+
