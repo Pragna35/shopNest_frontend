@@ -13,9 +13,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!name || !password) {
-      toast.error("please fill all the fields", {
-        theme: "colored",
-      });
+      toast.error("please fill all the fields");
       return;
     }
     try {
@@ -25,18 +23,15 @@ const Login = () => {
       });
       setName("");
       setPassword("");
-      toast.success(res.data.message, {
-        theme: "colored",
-      });
+      toast.success(res.data.message);
       setTimeout(() => {
         navigate("/");
       }, 1000);
     } catch (err) {
       const errorMsg =
         err.response?.data?.message || "login failed. Please try again";
-      toast.error(errorMsg, {
-        theme: "colored",
-      });
+      setError(errorMsg);
+      toast.error(errorMsg);
     }
   };
   return (

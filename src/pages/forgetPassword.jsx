@@ -16,9 +16,7 @@ const ForgetPassword = () => {
     e.preventDefault();
 
     if (!email) {
-      toast.error("please entr your email", {
-        theme: "colored",
-      });
+      toast.error("please entr your email");
       return;
     }
 

@@ -13,23 +13,53 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
+  const [Passworderror, setPasswordError] = useState("");
+  const [matchError, setMatchError] = useState("");
   const [error, setError] = useState(null);
 
+  //a function for checking password strength
+  const isStrongPassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!&$%*?])[A-Za-z\d@!&$%*?]{8,}$/;
+    return passwordRegex.test(password);
+  };
+  const handlePasswordChange = (e) => {
+    const pass = e.target.value;
+    setPassword(pass);
+
+    //checking password strength
+    if (!isStrongPassword(pass)) {
+      setPasswordError(
+        "password must be atleast 8 characters, include uppercase,lowercase,number and a special character"
+      );
+    } else {
+      setPasswordError("");
+    }
+  };
+
+  //handling password matching
+  const handleConfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPass(confirmPassword);
+
+    if (password !== confirmPassword) {
+      setMatchError("passwords do not match.");
+    } else {
+      setMatchError("");
+    }
+  };
+
+  //handling register
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     //validating fields
     if (!name || !password || !confirmPass || !email) {
-      toast.error("please fill all fields", {
-        // autoClose: 3000,
-        theme: "colored",
-      });
+      toast.error("please fill all fields");
       return; //prevents further execution
     }
 
-    //
-    if (password !== confirmPass) {
-      setError("passwords do not match!");
+    if (Passworderror || matchError) {
       return;
     }
     try {
@@ -40,11 +70,8 @@ const Register = () => {
       });
       // console.log(res);
 
-      //show success toast
-      toast.success(res.data.message, {
-        theme: "colored",
-      });
-      //clear input fields
+      toast.success(res.data.message);
+
       setName("");
       setEmail("");
       setPassword("");
@@ -57,9 +84,7 @@ const Register = () => {
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Registration failed!";
       setError(errorMsg);
-      toast.error(errorMsg, {
-        theme: "colored",
-      });
+      toast.error(errorMsg);
     }
   };
   return (
@@ -96,25 +121,28 @@ const Register = () => {
                   type="password"
                   placeholder="password"
                   value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
+                  onChange={handlePasswordChange}
                 />
                 <FaLock className="icon" />
               </div>
+              {Passworderror && (
+                <p style={{ color: "red", fontSize: ".7rem" }}>
+                  {Passworderror}
+                </p>
+              )}
 
               <div className="form-group">
                 <input
                   type="password"
                   placeholder="confirm password"
                   value={confirmPass}
-                  onChange={(e) => {
-                    setConfirmPass(e.target.value);
-                  }}
+                  onChange={handleConfirmPassword}
                 />
               </div>
 
-              {error && <p className="error-msg">{error}</p>}
+              {matchError && (
+                <p style={{ color: "red", fontSize: ".7rem" }}>{matchError}</p>
+              )}
 
               <button type="submit" className="regiser-btn">
                 Register
