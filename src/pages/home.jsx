@@ -1,7 +1,14 @@
+import Navbar from "../components/navBar";
+import Layout from "../layout/layout";
+import Footer from "../components/footer";
 const Home = () => {
   return (
     <>
-      <h1>home page</h1>
+      <div className="main">
+        <Navbar />
+        <Layout />
+        <Footer/>
+      </div>
     </>
   );
 };
