@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/login.css";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+import { AuthContext } from "../context/authContext";
+
 const Login = () => {
+  const { login } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -21,18 +26,28 @@ const Login = () => {
         name,
         password,
       });
-      setName("");
-      setPassword("");
-      toast.success(res.data.message);
+
+
+      const { token,username, message } = res.data;
+   
+          // Store token in context
+       login(token,username);
+
+      toast.success(message);
+
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 500);
+
     } catch (err) {
       const errorMsg =
         err.response?.data?.message || "login failed. Please try again";
       setError(errorMsg);
       toast.error(errorMsg);
     }
+
+    setName("");
+    setPassword("");
   };
   return (
     <>

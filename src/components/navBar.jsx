@@ -3,15 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 import { Container, Row, Col } from "reactstrap";
 
+import { AuthContext } from "../context/authContext";
+import { useContext } from "react";
+
 const Navbar = () => {
+  const { token, logout , currentUser} = useContext(AuthContext);
+
   const navigate = useNavigate();
-  const handleLogin = () => {
+
+  const handleLogout =  () => {
+    logout();
     navigate("/login");
   };
 
-  const handleRegister = () => {
-    navigate("/register");
-  };
   return (
     <>
       <header className="header">
@@ -20,7 +24,6 @@ const Navbar = () => {
             <Col lg="3" md="3" sm="4" className="text-start">
               <div className="logo-div d-flex align-items-center">
                 <img
-                
                   src="/shopping-bag-logo.avif"
                   alt="logo"
                   className="logo-img"
@@ -38,7 +41,7 @@ const Navbar = () => {
                 </div>
               </div>
             </Col>
-            <Col lg="6" md="5" sm="4" className="text-center">
+            <Col lg="5" md="5" sm="4" className="text-center">
               <div className="search-bar d-flex align-items-center justify-content-center">
                 <input type="text" placeholder="Search..." />
                 <span className="search-icon ">
@@ -46,18 +49,46 @@ const Navbar = () => {
                 </span>
               </div>
             </Col>
-            <Col
-              lg="3"
-              md="4"
-              sm="4"
-              className="text-end d-flex align-items-center justify-content-end "
-            >
-              <button className="login-btn" onClick={handleLogin}>
-                Log in
-              </button>
-              <button className="signin-btn" onClick={handleRegister}>
-                Sign up
-              </button>
+            {token ? (
+              <Col lg="3" md="4" sm="4">
+                <div className="profile-div d-flex align-items-center justify-content-end gap-3">
+                  <div className="profile d-flex align-items-center">
+                  <div className="profile-img d-flex align-items-center justify-content-center">
+                    <i class="ri-user-line"></i>
+                   
+                  </div>
+                  <span className="username">{currentUser}</span>
+                  </div>
+                 
+                  <button className="logout-btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              </Col>
+            ) : (
+              <Col
+                lg="3"
+                md="4"
+                sm="4"
+                className="text-end d-flex align-items-center justify-content-end "
+              >
+                <button
+                  className="login-btn"
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Log in
+                </button>
+                <button
+                  className="signin-btn"
+                  onClick={() => navigate("/register")}
+                >
+                  Sign up
+                </button>
+              </Col>
+            )}
+            <Col>
               <span className="cart-icon">
                 <i class="ri-shopping-cart-2-line"></i>
               </span>

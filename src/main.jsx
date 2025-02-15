@@ -6,13 +6,14 @@ import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "remixicon/fonts/remixicon.css";
 
-import { BrowserRouter } from "react-router-dom";
+
+import AuthProvider from "./context/authContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <AuthProvider>  
+      <App />
+  </AuthProvider>
 
   // </StrictMode>,
 );

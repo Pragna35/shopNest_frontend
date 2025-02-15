@@ -18,6 +18,7 @@
     border: 2px solid darkgray;
     border-radius: 20px;
     background-color: transparent;
+    padding:0 16px;
 }
 .search-bar input {
     width: 80%;
@@ -37,7 +38,7 @@
   }
  
   .login-btn,
-  .signin-btn {
+  .signin-btn,.logout-btn {
     margin: 0 5px;
     padding: 5px 12px;
     border: none;
@@ -48,9 +49,32 @@
     font-weight: 600;
 
   }
+  .profile{
+    flex-direction: column;
+    gap: 2px;
+  }
 
+  .profile-img{
+    background-color: lightgrey;
+
+    font-size: 2rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid grey;
+  }
+  .profile-img i{
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+.username{
+  font-weight: 600;
+  font-size: .8rem;
+}
   .cart-icon {
     font-size: 2rem;
     margin-left: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: end;
   }
