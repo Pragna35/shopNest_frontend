@@ -77,4 +77,19 @@
     cursor: pointer;
     display: flex;
     justify-content: end;
+    position: relative;
+  }
+
+  .cart-count{
+    position: absolute;
+    top: -3px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
   }

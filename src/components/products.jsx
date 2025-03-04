@@ -1,6 +1,16 @@
 import SideBar from "./side-bar";
 import DisplayProducts from "./display-products";
+import { useState } from "react";
+
+
 const Products = () => {
+
+  const [selectedCategory , setSelectedCategory] = useState("all");
+
+  const handleCategoryChange = (category) => {
+    // console.log(category)
+setSelectedCategory(category)
+  }
   return (
     <>
       <h1
@@ -17,8 +27,8 @@ const Products = () => {
         Latest Products
       </h1>
       <div className="products-container d-flex gap-3  my-3">
-        <SideBar />
-        <DisplayProducts />
+        <SideBar onCategoryChange={handleCategoryChange}/>
+        <DisplayProducts selectedCategory={selectedCategory}/>
       </div>
     </>
   );

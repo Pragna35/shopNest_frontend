@@ -27,18 +27,19 @@ const Login = () => {
         password,
       });
 
+      // console.log(res.data, "response");
+      const { token, userDetails, message } = res.data;
 
-      const { token,username, message } = res.data;
-   
-          // Store token in context
-       login(token,username);
+    
+
+      // Store token in context
+      login(token, userDetails);
 
       toast.success(message);
 
       setTimeout(() => {
         navigate("/");
       }, 500);
-
     } catch (err) {
       const errorMsg =
         err.response?.data?.message || "login failed. Please try again";

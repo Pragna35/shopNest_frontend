@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import Home from "./pages/home";
 import ForgetPassword from "./pages/forgetPassword";
 import ResetPassword from "./pages/resetPassword";
+import Cart from "./pages/cartPage";
 import NotFound from "./pages/notFound";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/cart" element={<Cart/>}/>
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <ToastContainer position="top-right" autoClose={1000} theme="colored" />

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
+import '../styles/reset-Password.css'
+
 const ResetPassword = () => {
   const navigate = useNavigate();
 

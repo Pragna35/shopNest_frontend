@@ -4,14 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 import { AuthContext } from "../context/authContext";
-import { useContext } from "react";
+import { useContext} from "react";
+import { CartContext } from "../context/cartContext";
+
 
 const Navbar = () => {
-  const { token, logout , currentUser} = useContext(AuthContext);
-
+  const { token, logout, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const {cartCount} = useContext(CartContext)
 
-  const handleLogout =  () => {
+
+
+  const getCartPage = () => {
+navigate("/cart")
+  }
+
+
+  const handleLogout = () => {
     logout();
     navigate("/login");
   };
@@ -53,13 +62,12 @@ const Navbar = () => {
               <Col lg="3" md="4" sm="4">
                 <div className="profile-div d-flex align-items-center justify-content-end gap-3">
                   <div className="profile d-flex align-items-center">
-                  <div className="profile-img d-flex align-items-center justify-content-center">
-                    <i class="ri-user-line"></i>
-                   
+                    <div className="profile-img d-flex align-items-center justify-content-center">
+                      <i class="ri-user-3-line"></i>
+                    </div>
+                    <span className="username">{currentUser.username}</span>
                   </div>
-                  <span className="username">{currentUser}</span>
-                  </div>
-                 
+
                   <button className="logout-btn" onClick={handleLogout}>
                     Logout
                   </button>
@@ -89,8 +97,9 @@ const Navbar = () => {
               </Col>
             )}
             <Col>
-              <span className="cart-icon">
+              <span className="cart-icon" onClick={getCartPage}>
                 <i class="ri-shopping-cart-2-line"></i>
+                <span className="cart-count">{ cartCount}</span>
               </span>
             </Col>
           </Row>

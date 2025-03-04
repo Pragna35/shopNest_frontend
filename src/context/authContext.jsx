@@ -2,10 +2,10 @@ import {  createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 
-const AuthProvider = ({children}) => {
+export const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState( null)
     const [token, setToken] = useState(null);
 
@@ -54,7 +54,6 @@ const AuthProvider = ({children}) => {
     )
 }
  
-export default AuthProvider;
-export {AuthContext};
+
 
 
